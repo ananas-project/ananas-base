@@ -7,9 +7,15 @@ import org.apache.log4j.Logger;
 public abstract class AbstractLoggerFactory {
 
 	public Logger getLogger() {
-		Logger logger = LogManager.getLogger(this.getClass().getName());
-		logger.setLevel(Level.ALL);
-		return logger;
+		boolean normal = true;
+		if (normal) {
+			Logger logger = LogManager.getLogger(this.getClass().getName());
+			logger.setLevel(Level.ALL);
+			return logger;
+		} else {
+			Logger logger = MyLogManager.getLogger(this.getClass().getName());
+			return logger;
+		}
 	}
 
 }
