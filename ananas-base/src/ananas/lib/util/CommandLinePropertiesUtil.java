@@ -6,6 +6,8 @@ import java.util.Properties;
 
 public abstract class CommandLinePropertiesUtil {
 
+	public final static String list_key = "[LIST]";
+
 	public static String[] propertiesToArguments(Properties prop) {
 		return CommandLinePropertiesUtil._p2a(prop);
 	}
@@ -19,7 +21,41 @@ public abstract class CommandLinePropertiesUtil {
 		return CommandLinePropertiesUtil._a2p(args, prop);
 	}
 
-	private final static String list_key = "[LIST]";
+	public static String[] listToArray(String list) {
+		return CommandLinePropertiesUtil._l2a(list);
+	}
+
+	private static String[] _l2a(String list) {
+		List<String> array = new ArrayList<String>();
+		StringBuilder sb = new StringBuilder();
+		char[] chs = list.toCharArray();
+		for (char ch : chs) {
+			final boolean isSpace;
+			switch (ch) {
+			case ' ':
+			case 0x0a:
+			case 0x0d:
+			case 0x09:
+				isSpace = true;
+				break;
+			default:
+				isSpace = false;
+			}
+			if (isSpace) {
+				String item = sb.toString();
+				sb.setLength(0);
+				if (item.length() > 0) {
+					array.add(item);
+				}
+			} else {
+				sb.append(ch);
+			}
+		}
+		if (sb.length() > 0) {
+			array.add(sb.toString());
+		}
+		return array.toArray(new String[array.size()]);
+	}
 
 	private static String[] _p2a(Properties prop) {
 		final List<String> list = new ArrayList<String>();
