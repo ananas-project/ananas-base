@@ -22,6 +22,9 @@ class DefaultConnectorImpl implements IConnector {
 				URI.create("resource:///"),
 				DefaultResourceConnection.getFactory());
 
+		this.getConnectionFactoryRegistrar().registerFactory(
+				URI.create("file:///"), DefaultFileConnection.getFactory());
+
 	}
 
 	@Override
