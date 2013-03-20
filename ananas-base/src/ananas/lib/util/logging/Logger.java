@@ -8,4 +8,6 @@ public interface Logger {
 
 	void warn(String string);
 
+	void info(String string);
+
 }

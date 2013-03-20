@@ -30,4 +30,9 @@ class MyLogger implements Logger {
 		System.err.println(string);
 	}
 
+	@Override
+	public void info(String string) {
+		this._print(string);
+	}
+
 }
