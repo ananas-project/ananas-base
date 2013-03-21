@@ -2,7 +2,7 @@ package ananas.lib.io;
 
 import java.io.IOException;
 
-public interface IConnection {
+public interface Connection {
 
 	void close() throws IOException;
 }

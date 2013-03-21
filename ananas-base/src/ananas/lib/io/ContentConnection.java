@@ -1,6 +1,6 @@
 package ananas.lib.io;
 
-public interface IContentConnection extends IStreamConnection {
+public interface ContentConnection extends StreamConnection {
 
 	String getType();
 

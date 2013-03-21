@@ -1,4 +1,4 @@
-package ananas.lib.io;
+package ananas.lib.io.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,7 +7,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 
-public class DefaultFileConnection implements IContentConnection {
+import ananas.lib.io.Connection;
+import ananas.lib.io.ConnectionFactory;
+import ananas.lib.io.ContentConnection;
+
+public class DefaultFileConnection implements ContentConnection {
 
 	// private final URI mURI;
 	private InputStream mIn;
@@ -18,11 +22,11 @@ public class DefaultFileConnection implements IContentConnection {
 		this.mFile = new File(uri.getPath());
 	}
 
-	public static IConnectionFactory getFactory() {
-		return new IConnectionFactory() {
+	public static ConnectionFactory getFactory() {
+		return new ConnectionFactory() {
 
 			@Override
-			public IConnection openConnection(URI uri) throws IOException {
+			public Connection openConnection(URI uri) throws IOException {
 				DefaultFileConnection conn = new DefaultFileConnection(uri);
 				return conn;
 			}

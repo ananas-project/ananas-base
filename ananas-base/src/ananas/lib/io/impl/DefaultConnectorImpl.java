@@ -1,4 +1,4 @@
-package ananas.lib.io;
+package ananas.lib.io.impl;
 
 import java.io.IOException;
 import java.net.URI;
@@ -7,9 +7,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-class DefaultConnectorImpl implements IConnector {
+import ananas.lib.io.Connection;
+import ananas.lib.io.ConnectionFactory;
+import ananas.lib.io.ConnectionFactoryRegistrar;
+import ananas.lib.io.Connector;
 
-	private final IConnectionFactoryRegistrar mReg;
+class DefaultConnectorImpl implements Connector {
+
+	private final ConnectionFactoryRegistrar mReg;
 
 	public DefaultConnectorImpl() {
 		this.mReg = new MyConnFactoryRegistrar();
@@ -28,9 +33,9 @@ class DefaultConnectorImpl implements IConnector {
 	}
 
 	@Override
-	public IConnection open(String uri) throws IOException {
+	public Connection open(String uri) throws IOException {
 		URI aURI = URI.create(uri);
-		IConnectionFactory factory = this.mReg.getFactory(aURI);
+		ConnectionFactory factory = this.mReg.getFactory(aURI);
 		if (factory == null) {
 			throw new IOException("no factory for uri : " + uri);
 		}
@@ -38,21 +43,21 @@ class DefaultConnectorImpl implements IConnector {
 	}
 
 	@Override
-	public IConnectionFactoryRegistrar getConnectionFactoryRegistrar() {
+	public ConnectionFactoryRegistrar getConnectionFactoryRegistrar() {
 		return this.mReg;
 	}
 
 	static class FactoryTableItem {
 
-		private final IConnectionFactory mFactory;
+		private final ConnectionFactory mFactory;
 		private final URI mURI;
 
-		public FactoryTableItem(URI uri, IConnectionFactory factory) {
+		public FactoryTableItem(URI uri, ConnectionFactory factory) {
 			this.mURI = uri;
 			this.mFactory = factory;
 		}
 
-		public IConnectionFactory getFactory() {
+		public ConnectionFactory getFactory() {
 			return this.mFactory;
 		}
 
@@ -61,7 +66,7 @@ class DefaultConnectorImpl implements IConnector {
 		}
 	}
 
-	private class MyConnFactoryRegistrar implements IConnectionFactoryRegistrar {
+	private class MyConnFactoryRegistrar implements ConnectionFactoryRegistrar {
 
 		private final HashMap<String, FactoryTableItem> mFactoryTable;
 
@@ -70,14 +75,14 @@ class DefaultConnectorImpl implements IConnector {
 		}
 
 		@Override
-		public void registerFactory(URI uri, IConnectionFactory factory) {
+		public void registerFactory(URI uri, ConnectionFactory factory) {
 			String key = this._calcKeyString(uri, SCHEME | HOST | PORT | PATH);
 			FactoryTableItem item = new FactoryTableItem(uri, factory);
 			this.mFactoryTable.put(key, item);
 		}
 
 		@Override
-		public IConnectionFactory getFactory(URI uri) {
+		public ConnectionFactory getFactory(URI uri) {
 			FactoryTableItem item = this._getItem(uri);
 			if (item == null) {
 				return null;
