@@ -10,4 +10,8 @@ public interface Logger {
 
 	void info(String string);
 
+	void error(String string);
+
+	void error(Throwable e);
+
 }

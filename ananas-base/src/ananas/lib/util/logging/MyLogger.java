@@ -35,4 +35,14 @@ class MyLogger implements Logger {
 		this._print(string);
 	}
 
+	@Override
+	public void error(String string) {
+		this._printErr(string);
+	}
+
+	@Override
+	public void error(Throwable e) {
+		e.printStackTrace();
+	}
+
 }
