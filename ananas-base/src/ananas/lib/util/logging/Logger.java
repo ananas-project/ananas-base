@@ -14,4 +14,6 @@ public interface Logger {
 
 	void error(Throwable e);
 
+	void error(String message, Throwable e);
+
 }

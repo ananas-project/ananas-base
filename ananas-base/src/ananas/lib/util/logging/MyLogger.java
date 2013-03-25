@@ -45,4 +45,12 @@ class MyLogger implements Logger {
 		e.printStackTrace();
 	}
 
+	@Override
+	public void error(String message, Throwable e) {
+
+		this._printErr(message);
+		e.printStackTrace();
+
+	}
+
 }
