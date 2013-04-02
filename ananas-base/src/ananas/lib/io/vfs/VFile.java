@@ -22,4 +22,12 @@ public interface VFile {
 	URI getURI();
 
 	String getName();
+
+	class Factory {
+
+		public static VFileSystem getVFS() {
+			return VFS.getFactory().defaultFileSystem();
+		}
+	}
+
 }
