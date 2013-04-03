@@ -2,14 +2,13 @@ package ananas.lib.io.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URI;
 
 import ananas.lib.io.Connection;
 import ananas.lib.io.ConnectionFactory;
-import ananas.lib.io.ContentConnection;
+import ananas.lib.io.ResourceConnection;
 
-public class DefaultResourceConnection implements ContentConnection {
+public class DefaultResourceConnection implements ResourceConnection {
 
 	private final InputStream mIS;
 
@@ -32,12 +31,6 @@ public class DefaultResourceConnection implements ContentConnection {
 	}
 
 	@Override
-	public OutputStream getOutputStream() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void close() throws IOException {
 		// TODO Auto-generated method stub
 
@@ -46,24 +39,6 @@ public class DefaultResourceConnection implements ContentConnection {
 	@Override
 	public InputStream getInputStream() throws IOException {
 		return this.mIS;
-	}
-
-	@Override
-	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public long getLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String getEncoding() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public static ConnectionFactory getFactory() {

@@ -28,6 +28,10 @@ class DefaultConnectorImpl implements Connector {
 				DefaultResourceConnection.getFactory());
 
 		this.getConnectionFactoryRegistrar().registerFactory(
+				URI.create("class:///"),
+				DefaultResourceClassConnection.getFactory());
+
+		this.getConnectionFactoryRegistrar().registerFactory(
 				URI.create("file:///"), DefaultFileConnection.getFactory());
 
 	}
