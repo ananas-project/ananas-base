@@ -1,8 +1,11 @@
 package ananas.lib.io;
 
 import java.io.IOException;
+import java.net.URI;
 
 public interface Connector {
+
+	Connection open(URI uri) throws IOException;
 
 	Connection open(String uri) throws IOException;
 

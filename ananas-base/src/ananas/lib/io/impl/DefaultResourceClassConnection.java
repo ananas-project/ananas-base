@@ -11,15 +11,22 @@ import ananas.lib.io.Connection;
 import ananas.lib.io.ConnectionFactory;
 import ananas.lib.io.ResourceClassConnection;
 import ananas.lib.io.ResourceConnection;
+import ananas.lib.util.logging.AbstractLoggerFactory;
+import ananas.lib.util.logging.Logger;
 
 public class DefaultResourceClassConnection implements ResourceClassConnection {
+
+	final static Logger log = (new AbstractLoggerFactory() {
+	}).getLogger();
 
 	private Class<?> mTargetClass;
 	private final String mDefaultFile;
 	private final String mClassName;
+	private final URI mURI;
 
 	public DefaultResourceClassConnection(URI uri) {
 
+		this.mURI = uri;
 		final String path = uri.getPath();
 		List<String> list = new ArrayList<String>();
 		int from = 0;
@@ -64,11 +71,21 @@ public class DefaultResourceClassConnection implements ResourceClassConnection {
 
 	@Override
 	public ResourceConnection getResource(String shortFileName)
-			throws IOException, ClassNotFoundException {
+			throws IOException {
 		if (shortFileName == null) {
 			shortFileName = this.mDefaultFile;
 		}
-		URL in = this.getTargetClass().getResource(shortFileName);
+		URL in;
+		try {
+			in = this.getTargetClass().getResource(shortFileName);
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+		if (in == null) {
+			log.info("process uri " + this.mURI + " to:");
+			log.error("no file:" + shortFileName);
+		} else {
+		}
 		return new MyResConn(in.openStream());
 	}
 

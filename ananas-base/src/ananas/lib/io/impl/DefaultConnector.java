@@ -1,6 +1,7 @@
 package ananas.lib.io.impl;
 
 import java.io.IOException;
+import java.net.URI;
 
 import ananas.lib.io.Connection;
 import ananas.lib.io.ConnectionFactoryRegistrar;
@@ -32,6 +33,11 @@ public class DefaultConnector implements Connector {
 	@Override
 	public ConnectionFactoryRegistrar getConnectionFactoryRegistrar() {
 		return this.mImpl.getConnectionFactoryRegistrar();
+	}
+
+	@Override
+	public Connection open(URI uri) throws IOException {
+		return this.mImpl.open(uri);
 	}
 
 }

@@ -6,6 +6,5 @@ public interface ResourceClassConnection extends Connection {
 
 	Class<?> getTargetClass() throws ClassNotFoundException;
 
-	ResourceConnection getResource(String shortFileName) throws IOException,
-			ClassNotFoundException;
+	ResourceConnection getResource(String shortFileName) throws IOException;
 }

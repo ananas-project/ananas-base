@@ -37,16 +37,6 @@ class DefaultConnectorImpl implements Connector {
 	}
 
 	@Override
-	public Connection open(String uri) throws IOException {
-		URI aURI = URI.create(uri);
-		ConnectionFactory factory = this.mReg.getFactory(aURI);
-		if (factory == null) {
-			throw new IOException("no factory for uri : " + uri);
-		}
-		return factory.openConnection(aURI);
-	}
-
-	@Override
 	public ConnectionFactoryRegistrar getConnectionFactoryRegistrar() {
 		return this.mReg;
 	}
@@ -177,6 +167,20 @@ class DefaultConnectorImpl implements Connector {
 			}
 			return list;
 		}
-	};
+	}
+
+	@Override
+	public Connection open(String uri) throws IOException {
+		return this.open(URI.create(uri));
+	}
+
+	@Override
+	public Connection open(URI uri) throws IOException {
+		ConnectionFactory factory = this.mReg.getFactory(uri);
+		if (factory == null) {
+			throw new IOException("no factory for uri : " + uri);
+		}
+		return factory.openConnection(uri);
+	}
 
 }
