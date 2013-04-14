@@ -9,6 +9,8 @@ public interface VFile {
 
 	boolean exists();
 
+	boolean mkdir();
+
 	boolean mkdirs();
 
 	boolean isDirectory();
