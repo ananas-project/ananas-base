@@ -26,6 +26,8 @@ public interface VFile {
 
 	String getName();
 
+	String getAbsolutePath();
+
 	class Factory {
 
 		public static VFileSystem getVFS() {
