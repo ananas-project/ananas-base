@@ -2,6 +2,7 @@ package ananas.lib.io.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -15,6 +16,7 @@ public class DefaultFileConnection implements ContentConnection {
 
 	// private final URI mURI;
 	private InputStream mIn;
+	private OutputStream mOut;
 	private final File mFile;
 
 	public DefaultFileConnection(URI uri) {
@@ -43,8 +45,12 @@ public class DefaultFileConnection implements ContentConnection {
 
 	@Override
 	public OutputStream getOutputStream() throws IOException {
-		// TODO Auto-generated method stub
-		return null;
+		OutputStream out = this.mOut;
+		if (out == null) {
+			out = new FileOutputStream(this.mFile);
+			this.mOut = out;
+		}
+		return out;
 	}
 
 	@Override
