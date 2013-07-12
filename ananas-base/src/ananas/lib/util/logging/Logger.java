@@ -16,4 +16,16 @@ public interface Logger {
 
 	void error(String message, Throwable e);
 
+	class Manager {
+
+		public static Logger getLogger() {
+			return getLogger(null);
+		}
+
+		public static Logger getLogger(String name) {
+			return LogManager.Factory.getDefault().getLogger(name);
+		}
+
+	}
+
 }

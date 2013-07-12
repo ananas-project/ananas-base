@@ -11,13 +11,11 @@ import ananas.lib.io.Connection;
 import ananas.lib.io.ConnectionFactory;
 import ananas.lib.io.ResourceClassConnection;
 import ananas.lib.io.ResourceConnection;
-import ananas.lib.util.logging.LoggerAF;
 import ananas.lib.util.logging.Logger;
 
 public class DefaultResourceClassConnection implements ResourceClassConnection {
 
-	final static Logger log = (new LoggerAF() {
-	}).getLogger();
+	final static Logger log = Logger.Manager.getLogger("");
 
 	private Class<?> mTargetClass;
 	private final String mDefaultFile;
