@@ -31,7 +31,7 @@ public interface VFile {
 	class Factory {
 
 		public static VFileSystem getVFS() {
-			return VFS.getFactory().defaultFileSystem();
+			return VFS.getDefaultFactory().defaultFileSystem();
 		}
 	}
 

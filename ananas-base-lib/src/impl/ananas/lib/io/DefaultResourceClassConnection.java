@@ -1,4 +1,4 @@
-package ananas.lib.io.impl;
+package impl.ananas.lib.io;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,12 +11,12 @@ import ananas.lib.io.Connection;
 import ananas.lib.io.ConnectionFactory;
 import ananas.lib.io.ResourceClassConnection;
 import ananas.lib.io.ResourceConnection;
-import ananas.lib.util.logging.AbstractLoggerFactory;
+import ananas.lib.util.logging.LoggerAF;
 import ananas.lib.util.logging.Logger;
 
 public class DefaultResourceClassConnection implements ResourceClassConnection {
 
-	final static Logger log = (new AbstractLoggerFactory() {
+	final static Logger log = (new LoggerAF() {
 	}).getLogger();
 
 	private Class<?> mTargetClass;

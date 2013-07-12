@@ -1,4 +1,4 @@
-package ananas.lib.io.impl;
+package impl.ananas.lib.io;
 
 import java.io.IOException;
 import java.io.InputStream;

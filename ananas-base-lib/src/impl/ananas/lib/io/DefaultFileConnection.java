@@ -1,4 +1,4 @@
-package ananas.lib.io.impl;
+package impl.ananas.lib.io;
 
 import java.io.File;
 import java.io.FileInputStream;
