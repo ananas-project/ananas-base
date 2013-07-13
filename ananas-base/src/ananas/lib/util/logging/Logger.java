@@ -16,7 +16,7 @@ public interface Logger {
 
 	void error(String message, Throwable e);
 
-	class Manager {
+	class Agent {
 
 		public static Logger getLogger() {
 			return getLogger(null);

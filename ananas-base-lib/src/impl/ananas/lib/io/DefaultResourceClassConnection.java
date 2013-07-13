@@ -15,7 +15,7 @@ import ananas.lib.util.logging.Logger;
 
 public class DefaultResourceClassConnection implements ResourceClassConnection {
 
-	final static Logger log = Logger.Manager.getLogger("");
+	final static Logger log = Logger.Agent.getLogger();
 
 	private Class<?> mTargetClass;
 	private final String mDefaultFile;

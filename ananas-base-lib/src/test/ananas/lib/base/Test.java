@@ -7,7 +7,7 @@ import ananas.lib.util.logging.Logger;
 
 public class Test {
 
-	static final Logger logger = Logger.Manager.getLogger();
+	static final Logger logger = Logger.Agent.getLogger();
 
 	public static void main(String[] arg) {
 
