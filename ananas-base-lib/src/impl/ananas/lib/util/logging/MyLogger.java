@@ -1,5 +1,8 @@
 package impl.ananas.lib.util.logging;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ananas.lib.util.logging.Level;
 import ananas.lib.util.logging.Logger;
 
@@ -51,15 +54,41 @@ public class MyLogger implements Logger {
 	}
 
 	final int _err_key = Level.WARN.getNumber();
+	private Level _level_limit;
 
 	@Override
 	public void log(Level level, String string) {
+		final Level levelLimit = this.__getLimit();
+		if (level.getNumber() < levelLimit.getNumber()) {
+			return;
+		}
 		string = level.getText() + " : " + this._name + " : " + string;
 		if (level.getNumber() >= _err_key) {
 			System.err.println(string);
 		} else {
 			System.out.println(string);
 		}
+	}
+
+	private Level __getLimit() {
+		Level lv = this._level_limit;
+		if (lv == null) {
+			String key = Level.class.getName() + ".limit";
+			String value = System.getProperty(key) + "";
+			Level[] array = { Level.OFF, Level.ALL, Level.TRACE, Level.DEBUG,
+					Level.INFO, Level.WARN, Level.ERROR, Level.FATAL };
+			Map<String, Level> map = new HashMap<String, Level>();
+			for (Level lv2 : array) {
+				map.put(lv2.getText(), lv2);
+			}
+			lv = map.get(value);
+			if (lv == null) {
+				System.err.println("bad value of property:" + key);
+				System.err.println("set level.limit to ALL");
+				lv = Level.ALL;
+			}
+		}
+		return lv;
 	}
 
 	@Override
