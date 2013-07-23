@@ -2,9 +2,21 @@ package ananas.lib.util.logging;
 
 public interface Logger {
 
+	// base
+
 	void setLevel(Level level);
 
+	void log(String string);
+
+	void log(Level level, String string);
+
+	// levels
+
 	void trace(String string);
+
+	void debug(String string);
+
+	void fatal(String string);
 
 	void warn(String string);
 
@@ -15,6 +27,8 @@ public interface Logger {
 	void error(Throwable e);
 
 	void error(String message, Throwable e);
+
+	// agent
 
 	class Agent {
 

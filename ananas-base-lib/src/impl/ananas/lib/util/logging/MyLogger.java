@@ -5,43 +5,76 @@ import ananas.lib.util.logging.Logger;
 
 public class MyLogger implements Logger {
 
+	private Level _level = Level.INFO;
+	private final String _name;
+
 	public MyLogger(String name) {
+		_name = name;
 	}
 
 	@Override
 	public void setLevel(Level level) {
+		if (level != null) {
+			_level = level;
+		}
 	}
 
 	@Override
 	public void trace(String string) {
-		System.out.println(string);
+		log(Level.TRACE, string);
 	}
 
 	@Override
 	public void warn(String string) {
-		System.err.println(string);
+		log(Level.WARN, string);
 	}
 
 	@Override
 	public void info(String string) {
-		System.out.println(string);
+		log(Level.INFO, string);
 	}
 
 	@Override
 	public void error(String string) {
-		System.err.println(string);
+		error(string, new RuntimeException(string));
 	}
 
 	@Override
 	public void error(Throwable e) {
-		System.err.println(e);
-		e.printStackTrace(System.err);
+		error(e.getMessage(), e);
 	}
 
 	@Override
 	public void error(String message, Throwable e) {
-		System.err.println(e + ":" + message);
+		log(Level.ERROR, message);
 		e.printStackTrace(System.err);
+	}
+
+	final int _err_key = Level.WARN.getNumber();
+
+	@Override
+	public void log(Level level, String string) {
+		string = level.getText() + " : " + this._name + " : " + string;
+		if (level.getNumber() >= _err_key) {
+			System.err.println(string);
+		} else {
+			System.out.println(string);
+		}
+	}
+
+	@Override
+	public void debug(String string) {
+		log(Level.DEBUG, string);
+	}
+
+	@Override
+	public void log(String string) {
+		log(_level, string);
+	}
+
+	@Override
+	public void fatal(String string) {
+		log(Level.FATAL, string);
 	}
 
 }
