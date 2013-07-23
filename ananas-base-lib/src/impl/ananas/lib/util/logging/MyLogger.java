@@ -62,12 +62,18 @@ public class MyLogger implements Logger {
 		if (level.getNumber() < levelLimit.getNumber()) {
 			return;
 		}
-		string = level.getText() + " : " + this._name + " : " + string;
+		string = this.__levelToString(level) + " : " + this._name + " : "
+				+ string;
 		if (level.getNumber() >= _err_key) {
 			System.err.println(string);
 		} else {
 			System.out.println(string);
 		}
+	}
+
+	private String __levelToString(Level level) {
+		String s = level.getText() + "    ";
+		return s.substring(0, 5);
 	}
 
 	private Level __getLimit() {
