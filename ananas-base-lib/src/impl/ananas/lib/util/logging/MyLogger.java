@@ -62,13 +62,41 @@ public class MyLogger implements Logger {
 		if (level.getNumber() < levelLimit.getNumber()) {
 			return;
 		}
-		string = this.__levelToString(level) + " : " + this._name + " : "
-				+ string;
+		final String sp = " ";
+		string = this.__timeToString() + sp + this.__levelToString(level) + sp
+				+ this.__threadToString() + sp + this._name + sp + " " + string;
 		if (level.getNumber() >= _err_key) {
 			System.err.println(string);
 		} else {
 			System.out.println(string);
 		}
+	}
+
+	private String __threadToString() {
+		return Thread.currentThread().toString();
+	}
+
+	private String __timeToString() {
+		return this.__timeToString(System.currentTimeMillis());
+	}
+
+	private String __timeToString(long time) {
+		long h, m, s, ms;
+		ms = time % 1000;
+		s = (time / 1000) % 60;
+		m = (time / (1000 * 60)) % 60;
+		h = (time / (1000 * 3600)) % 24;
+		return (__intToStr(h, 2) + ":" + __intToStr(m, 2) + ":"
+				+ __intToStr(s, 2) + "." + __intToStr(ms, 3));
+	}
+
+	private String __intToStr(long n, int len) {
+		String s = "0000" + n;
+		int slen = s.length();
+		if (slen > len)
+			return s.substring(slen - len);
+		else
+			return s;
 	}
 
 	private String __levelToString(Level level) {
