@@ -72,7 +72,7 @@ public interface Locale {
 				zone = zone.toUpperCase();
 				this._lang = lang;
 				this._zone = zone;
-				this._string = lang + "-" + zone;
+				this._string = lang + "_" + zone;
 			}
 
 			@Override
