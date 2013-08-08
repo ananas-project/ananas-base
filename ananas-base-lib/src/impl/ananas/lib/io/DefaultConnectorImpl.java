@@ -34,6 +34,11 @@ class DefaultConnectorImpl implements Connector {
 		this.getConnectionFactoryRegistrar().registerFactory(
 				URI.create("file:///"), DefaultFileConnection.getFactory());
 
+		this.getConnectionFactoryRegistrar().registerFactory(
+				URI.create("http:///"), DefaultHttpConnection.getFactory());
+		this.getConnectionFactoryRegistrar().registerFactory(
+				URI.create("https:///"), DefaultHttpsConnection.getFactory());
+
 	}
 
 	@Override
