@@ -10,8 +10,6 @@ public interface ThreadManager {
 
 	IThread currentThread();
 
-	ThreadRegistrar getThreadRegistrar();
-
 	class Agent {
 
 		private static ThreadManager _inst;
