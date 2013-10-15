@@ -33,6 +33,18 @@ public interface VFile {
 		public static VFileSystem getVFS() {
 			return VFS.getDefaultFactory().defaultFileSystem();
 		}
+
+		public static VFile create(String path) {
+			return getVFS().newFile(path);
+		}
+
+		public static VFile create(VFile base, String path) {
+			return getVFS().newFile(base, path);
+		}
+
+		public static VFile create(String base, String path) {
+			return getVFS().newFile(base, path);
+		}
 	}
 
 	List<VFile> listFiles();

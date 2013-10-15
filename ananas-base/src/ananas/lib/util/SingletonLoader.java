@@ -20,7 +20,7 @@ public class SingletonLoader {
 		final String apiName = apiClass.getName();
 		String implName = System.getProperty(apiName);
 		if (implName != null) {
-			Object inst = load(implName);
+			Object inst = load(implName.trim());
 			if (inst != null) {
 				return inst;
 			}
