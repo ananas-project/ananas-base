@@ -18,4 +18,6 @@ public interface VFileSystem {
 
 	VFile newFile(URI uri);
 
+	String pathSeparator();
+
 }

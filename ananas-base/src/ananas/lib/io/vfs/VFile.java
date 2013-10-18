@@ -14,6 +14,8 @@ public interface VFile {
 
 	boolean mkdirs();
 
+	boolean renameTo(VFile dest);
+
 	boolean isDirectory();
 
 	boolean createNewFile() throws IOException;
