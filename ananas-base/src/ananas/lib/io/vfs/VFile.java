@@ -30,6 +30,8 @@ public interface VFile {
 
 	String getAbsolutePath();
 
+	boolean delete();
+
 	class Factory {
 
 		public static VFileSystem getVFS() {

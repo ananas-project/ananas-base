@@ -20,4 +20,6 @@ public interface VFileSystem {
 
 	String pathSeparator();
 
+	String separator();
+
 }
