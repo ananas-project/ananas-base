@@ -32,6 +32,10 @@ public interface VFile {
 
 	boolean delete();
 
+	long lastModified();
+
+	long length();
+
 	class Factory {
 
 		public static VFileSystem getVFS() {
