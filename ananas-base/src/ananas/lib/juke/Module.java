@@ -1,6 +1,6 @@
 package ananas.lib.juke;
 
-public interface Component {
+public interface Module {
 
 	Kernel getKernel();
 

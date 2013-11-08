@@ -9,11 +9,9 @@ import java.util.Properties;
 
 public interface Kernel {
 
-	Component getComponent(Class<?> api, String var_name);
+	Module getModule(Class<?> api);
 
-	Component getComponent(Class<?> api);
-
-	ComponentManager getComponentManager();
+	ModuleManager getModuleManager();
 
 	Properties getProperties();
 
