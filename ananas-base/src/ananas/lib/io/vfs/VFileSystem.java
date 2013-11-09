@@ -22,4 +22,12 @@ public interface VFileSystem {
 
 	String separator();
 
+	char pathSeparatorChar();
+
+	char separatorChar();
+
+	VPathAbsolute newAbsolutePath(String string);
+
+	VPathRelative newRelativePath(String string);
+
 }
