@@ -20,7 +20,7 @@ public class VFileOutputStream extends OutputStream {
 		OutputStream inner = _out;
 		if (inner == null) {
 			OutputConnection conn = (OutputConnection) Connector.Factory
-					.getDefault().open(_file.getURI());
+					.getDefault().open(_file.toURI());
 			this._conn = conn;
 			inner = conn.getOutputStream();
 			this._out = inner;

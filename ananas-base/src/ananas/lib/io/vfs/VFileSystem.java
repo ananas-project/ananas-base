@@ -1,5 +1,6 @@
 package ananas.lib.io.vfs;
 
+import java.io.IOException;
 import java.net.URI;
 
 public interface VFileSystem {
@@ -17,6 +18,14 @@ public interface VFileSystem {
 	VFile newFile(String path);
 
 	VFile newFile(URI uri);
+
+	VFile createTempFile(String prefix, String suffix) throws IOException;
+
+	VFile createTempFile(String prefix, String suffix, VFile directory) throws IOException;
+
+	VFile[] listRoots();
+
+	// separator
 
 	String pathSeparator();
 

@@ -2,39 +2,10 @@ package ananas.lib.io.vfs;
 
 import java.io.IOException;
 import java.net.URI;
-import java.util.List;
 
 public interface VFile {
 
 	VFileSystem getVFS();
-
-	boolean exists();
-
-	boolean mkdir();
-
-	boolean mkdirs();
-
-	boolean renameTo(VFile dest);
-
-	boolean isDirectory();
-
-	boolean createNewFile() throws IOException;
-
-	VFile getParentFile();
-
-	boolean isFile();
-
-	URI getURI();
-
-	String getName();
-
-	String getAbsolutePath();
-
-	boolean delete();
-
-	long lastModified();
-
-	long length();
 
 	class Factory {
 
@@ -55,6 +26,94 @@ public interface VFile {
 		}
 	}
 
-	List<VFile> listFiles();
+	boolean canExecute();
+
+	boolean canRead();
+
+	boolean canWrite();
+
+	int compareTo(VFile pathname);
+
+	boolean createNewFile() throws IOException;
+
+	boolean delete();
+
+	void deleteOnExit();
+
+	boolean equals(Object obj);
+
+	boolean exists();
+
+	VFile getAbsoluteFile();
+
+	String getAbsolutePath();
+
+	VFile getCanonicalFile() throws IOException;
+
+	String getCanonicalPath() throws IOException;
+
+	long getFreeSpace();
+
+	String getName();
+
+	String getParent();
+
+	VFile getParentFile();
+
+	String getPath();
+
+	long getTotalSpace();
+
+	long getUsableSpace();
+
+	int hashCode();
+
+	boolean isAbsolute();
+
+	boolean isDirectory();
+
+	boolean isFile();
+
+	boolean isHidden();
+
+	long lastModified();
+
+	long length();
+
+	String[] list();
+
+	String[] list(VFilenameFilter filter);
+
+	VFile[] listFiles();
+
+	VFile[] listFiles(VFileFilter filter);
+
+	VFile[] listFiles(VFilenameFilter filter);
+
+	boolean mkdir();
+
+	boolean mkdirs();
+
+	boolean renameTo(VFile dest);
+
+	boolean setExecutable(boolean executable);
+
+	boolean setExecutable(boolean executable, boolean ownerOnly);
+
+	boolean setLastModified(long time);
+
+	boolean setReadable(boolean readable);
+
+	boolean setReadable(boolean readable, boolean ownerOnly);
+
+	boolean setReadOnly();
+
+	boolean setWritable(boolean writable);
+
+	boolean setWritable(boolean writable, boolean ownerOnly);
+
+	String toString();
+
+	URI toURI();
 
 }

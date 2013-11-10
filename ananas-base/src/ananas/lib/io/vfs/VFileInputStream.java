@@ -20,7 +20,7 @@ public class VFileInputStream extends InputStream {
 		InputStream in = _in;
 		if (in == null) {
 			InputConnection conn = (InputConnection) Connector.Factory
-					.getDefault().open(_file.getURI());
+					.getDefault().open(_file.toURI());
 			this._conn = conn;
 			in = conn.getInputStream();
 			this._in = in;
